@@ -1,0 +1,79 @@
+/*定义变量*/
+$blue: #1875e7;
+
+div {
+    color: $blue;
+}
+/*将变量嵌入到字符串中*/
+$side: left;
+
+.rounded {
+    border-#{$side}-radius: 5px;
+}
+/*计算功能*/
+$var: 100px;
+
+body {
+    margin: (14px/2);
+    top: 50px + 100px;
+    right: $var * 10%;
+}
+/*嵌套*/
+div {
+    hi {
+        color: red;
+    }
+}
+/*在嵌套的代码块内，可以使用&引用父元素。比如a:hover伪类，可以写成：*/
+a {
+    &:hover {
+        color: #ffb3ff;
+    }
+}
+/*继承*/
+.class1 {
+    border: 1px solid #ddd;
+}
+
+.class2 {
+    @extend .class1;
+    font-size: 120%;
+}
+/*
+  Mixin
+  Mixin有点像C语言的宏（macro），是可以重用的代码块
+*/
+// 定义
+@mixin left {
+    float: left;
+    margin-left: 10px;
+}
+// 引用
+
+div {
+    @include left;
+}
+/*
+  mixin的强大之处，在于可以指定参数和缺省值
+*/
+@mixin left($value: 10px) {
+    float: left;
+    margin-right: $value;
+}
+// 使用
+
+div {
+    @include left(20px);
+}
+/*颜色函数*/
+lighten(#cc3, 10%)// #d6d65c
+darken(#cc3, 10%)// #a3a329
+grayscale(#cc3)// #808080
+complement(#cc3)// #33c
+/*插入文件*/
+@import "path/filename.scss";
+/*
+  高级用法：
+  sass支持if、for、自定义函数等
+  详见文档
+*/
